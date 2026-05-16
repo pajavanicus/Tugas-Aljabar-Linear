@@ -1,0 +1,5 @@
+doc1.txt: grand, 0.6990 lando, 0.6990 max, 0.3979 miami, 0.3979 norri, 0.6990 prix, 0.6990 race, 0.2218 thrill, 0.6990 verstappen, 0.3979 win, 0.6990
+doc2.txt: bull, 0.6990 circuit, 0.6990 drive, 0.6990 finish, 0.6990 max, 0.3979 miami, 0.3979 race, 0.2218 red, 0.6990 second, 0.6990 street, 0.6990 verstappen, 0.3979
+doc3.txt: car, 0.3979 crash, 0.6990 deploy, 0.6990 huge, 0.6990 lap, 0.6990 safeti, 0.6990 three, 0.6990 turn, 0.6990 twenti, 0.6990
+doc4.txt: brought, 0.6990 car, 0.3979 improv, 0.6990 massiv, 0.6990 mclaren, 0.6990 pace, 0.6990 race, 0.2218 significantli, 0.6990 upgrad, 0.6990
+doc5.txt: enjoy, 0.6990 fan, 0.6990 formula, 0.6990 hot, 0.6990 one, 0.6990 overtak, 0.6990 spectacular, 0.6990 weather, 0.6990 weekend, 0.6990

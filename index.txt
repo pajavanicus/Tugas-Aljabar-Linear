@@ -1,0 +1,42 @@
+brought: 4,1
+bull: 2,1
+car: 3,1 4,1
+circuit: 2,1
+crash: 3,1
+deploy: 3,1
+drive: 2,1
+enjoy: 5,1
+fan: 5,1
+finish: 2,1
+formula: 5,1
+grand: 1,1
+hot: 5,1
+huge: 3,1
+improv: 4,1
+lando: 1,1
+lap: 3,1
+massiv: 4,1
+max: 1,1 2,1
+mclaren: 4,1
+miami: 1,1 2,1
+norri: 1,1
+one: 5,1
+overtak: 5,1
+pace: 4,1
+prix: 1,1
+race: 1,1 2,1 4,1
+red: 2,1
+safeti: 3,1
+second: 2,1
+significantli: 4,1
+spectacular: 5,1
+street: 2,1
+three: 3,1
+thrill: 1,1
+turn: 3,1
+twenti: 3,1
+upgrad: 4,1
+verstappen: 1,1 2,1
+weather: 5,1
+weekend: 5,1
+win: 1,1
