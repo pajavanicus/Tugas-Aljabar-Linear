@@ -1,39 +1,66 @@
-Tugas Aljabar Linear
+Tugas Vector Space Model (VSM) - Aljabar Linear
 
-Program ini adalah implementasi Vector Space Model untuk sistem temu balik informasi. Program dibuat menggunakan bahasa Python murni dengan bantuan library NLTK untuk pemrosesan teks dasar.
+Program ini adalah implementasi Vector Space Model (VSM) untuk sistem temu balik informasi (Information Retrieval). Program dibuat menggunakan bahasa Python 3 dengan bantuan library NLTK untuk pemrosesan teks. Dataset dokumen teks yang digunakan di dalam program ini berbentuk artikel naratif seputar balapan Formula 1 Grand Prix Miami 2026.
 
-Cara Menjalankan Program
-Pastikan Anda sudah menginstal Python 3 di komputer.
-1. Buka Terminal atau Command Prompt, lalu arahkan ke dalam folder proyek ini.
-2. Instal library NLTK dengan menjalankan perintah:
+1. Cara Menjalankan Program
+Sebelum menjalankan program, pastikan Anda sudah menginstal Python 3 di komputer Anda.
+1. Buka Terminal atau Command Prompt, lalu masuk ke dalam folder proyek `vsm`
+
+2. Instal library NLTK yang dibutuhkan dengan menjalankan perintah berikut:
    `pip install -r requirements.txt`
-3. Jalankan program dengan format perintah `python vsm.py <file_base> <file_query>`. Contohnya:
+
+3. Jalankan program utama dengan format perintah `python vsm.py <file_base> <file_query>`. Contohnya:
    `python vsm.py base.txt query1.txt`
+   *(Atau gunakan `py vsm.py base.txt query1.txt` jika sistem Anda menggunakan perintah `py`)*
 
-Penjelasan Singkat Algoritma
-Program ini bekerja melalui 4 tahapan utama:
-- Preprocessing : Teks dari setiap dokumen dan query diubah menjadi huruf kecil (case-folding). Setelah itu, teks dipotong menjadi kata-kata (tokenisasi), dibersihkan dari tanda baca dan stopwords (kata umum bahasa Inggris), lalu diubah ke kata dasarnya (stemming) menggunakan NLTK.
-- Inverted Index : Program menghitung frekuensi kemunculan setiap kata (Term Frequency) di masing-masing dokumen untuk membuat kamus kata.
-- Pembobotan TF-IDF : Nilai TF digabungkan dengan nilai IDF (Inverse Document Frequency) menggunakan rumus logaritma untuk mencari seberapa penting bobot sebuah kata di dalam dokumen tersebut.
-- Perangkingan (Cosine Similarity) : Program mencari nilai kedekatan (kemiripan) antara vektor dokumen dan vektor query menggunakan rumus Cosine Similarity (perkalian titik dibagi panjang vektor). Dokumen kemudian diurutkan dari nilai kemiripan tertinggi ke terendah.
+2. Penjelasan Singkat Algoritma
+Algoritma program ini dibangun secara prosedural tingkat pemula yang dibagi menjadi 4 tahapan utama:
+- Preprocessing (NLTK): Mengubah seluruh teks dokumen dan query menjadi huruf kecil (case folding). Selanjutnya, teks dipotong menjadi kata-kata (tokenisasi), dibersihkan dari tanda baca serta kata hubung logika (and, or, not), dihapus dari kata-kata umum bahasa Inggris (stopwords), dan direduksi ke bentuk kata dasarnya (stemming) menggunakan fungsi `PorterStemmer` dari library NLTK.
+- Pembuatan Inverted Index: Program mengumpulkan seluruh kata unik menjadi kamus kata (vocabulary) dan menghitung frekuensi kemunculan kata (Term Frequency / TF) pada setiap dokumen.
+- Pembobotan TF-IDF: Nilai bobot dihitung berdasarkan rumus TF dikali IDF.
+- Perangkingan (Cosine Similarity) : Tingkat kemiripan antara vektor query dan vektor dokumen diukur menggunakan rumus Cosine Similarity. Hasil perhitungan kemiripan kemudian diurutkan dari nilai terbesar ke terkecil menggunakan algoritma sorting manual (Bubble Sort).
 
-Contoh Hasil Keluaran
-Ketika program selesai dijalankan, akan muncul 3 file output baru:
+3. Contoh Hasil Keluaran Program
+Setiap kali dijalankan, program akan memproses teks esai dan memperbarui 3 file output berikut secara otomatis:
 
-A. index.txt
-Menampilkan daftar kata dan di dokumen mana saja kata itu muncul beserta frekuensinya. Contoh:
-land: 1,1
-mclaren: 1,1 4,1
-norri: 1,1
-win: 1,1
+A. File `index.txt` (Inverted Index)
+Menampilkan kata unik hasil stemming yang diikuti dengan posisi nomor dokumen dan frekuensinya. Contoh:
+absolut: 1,1
+achiev: 1,1 2,1
+across: 5,1
+activ: 5,1
+adapt: 5,1
+admiss: 2,1
+advantag: 1,1
+aerodynam: 2,1
+afternoon: 1,1
+allow: 3,1
+alreadi: 2,1
+also: 1,1
+amount: 5,1
+antonelli: 1,5
+around: 1,1
+attack: 1,1
+autodrom: 1,1
+avail: 1,1
+avoid: 2,1
+barrier: 3,1 5,1
+battl: 3,1 4,1 5,1
+becom: 1,1
+begin: 3,1
+behind: 4,1
+bold: 3,1
+boost: 2,1
+brake: 3,1
 
-weights.txt
-Menampilkan bobot kata untuk masing-masing dokumen. Contoh:
-doc1.txt: land, 0.6990 mclaren, 0.3979 norri, 0.6990 win, 0.6990
-doc4.txt: mclaren, 0.3979 upgrad, 0.6990 pack, 0.6990
+B. File weights.txt (Bobot TF-IDF)
+Menampilkan daftar kata unik beserta nilai bobot desimalnya untuk masing-masing dokumen secara mendetail. Contoh:
+doc1.txt: antonelli, 0.5841 norri, 0.2795 victor, 0.3979
+doc2.txt: mclaren, 0.5396 norri, 0.3636
 
-response.txt
-Menampilkan jumlah dokumen yang relevan (baris pertama), diikuti urutan dokumen dari yang paling mirip dengan query beserta nilai Cosine Similarity-nya. Contoh:
-2
-doc1.txt 0.5640
-doc4.txt 0.1835
+C. File response.txt (Hasil Perangkingan)
+Baris pertama menunjukkan jumlah dokumen dengan nilai kemiripan > 0.001. Baris berikutnya berisi nama file dokumen dan nilai skor kemiripannya terhadap query pencarian yang sudah terurut dari yang paling relevan. Contoh:
+3
+doc1.txt 0.2769
+doc4.txt 0.0580
+doc2.txt 0.0412
